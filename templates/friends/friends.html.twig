@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <table class="table table-dark" id="center" style="width: 10%;">
+        <thead>
+        <tr>
+            <th scope="col">Vos amis</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for friend in friends %}
+            <tr>
+                <th scope="row">{{ friend }}</th>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <style>
+        #center{
+            margin:auto;
+            float:none;  /* annule le float:left de bootstrap*/
+        }
+    </style>
+{% endblock %}

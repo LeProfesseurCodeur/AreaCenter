@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="login-popup-heading text-center">
+        <h4 class="text-primary">Creation de groupe</h4>
+
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-muted">Tous vos groupes</span>
+                    <span class="badge badge-secondary badge-pill">{{ userGroups|length }}</span>
+                </h4>
+                {% for group in userGroups %}
+                    <ul class="list-group mb-3">
+                        <li class="list-group-item d-flex justify-content-between lh-condensed">
+                            <div>
+                                <h6 class="my-0">Nom : {{ group.name }}</h6>
+                                <small class="text-muted">Description : {{ group.description }}</small>
+                            </div>
+                            <span class="text-muted">{{ group.createdAt|date("m/d/Y")  }}</span>
+                        </li>
+                    </ul>
+                {% endfor %}
+
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    {{ form_end(form) }}
+                </div>
+            </div>
+            <div class="col">
+
+            </div>
+        </div>
+
+    </div>
+
+    <style>
+        .login-popup-heading>h4 {
+            font-size: 18px;
+            line-height: 30px;
+        }
+        .form-group {
+            border-radius: 2px;
+            min-height: 100px;
+            width: 500px;
+            margin: 0px auto;
+        }
+        #login-popup-btn {
+            background: #258b47;
+            border: none;
+            border-radius: 25px;
+            color: #fff;
+            display: block;
+            font-size: 18px;
+            height: 38px;
+            line-height: 28px;
+            margin: 20px auto 5px;
+            width: 20%;
+            -webkit-transition: all 700ms ease;
+            -moz-transition: all 700ms ease;
+            -ms-transition: all 700ms ease;
+            -o-transition: all 700ms ease;
+        }
+        a{
+            color: #258b47;
+            font-size: 18px;
+        }
+{% endblock %}

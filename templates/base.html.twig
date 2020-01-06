@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        {% block stylesheets %}
+            <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+            <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
+            <link rel="stylesheet" href="">
+        {% endblock %}
+    </head>
+    <body>
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+        <a id="navtitle" class="navbar-brand" href="{{ path('homepage') }}">Area Center</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            </ul>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{  path('security_administration') }}" class="btn btn-primary btn-primary ml-2"> Administration</a>
+                {% endif %}
+                <a href="{{ path('groups_index') }}" class="btn btn-primary btn-primary ml-2"><span class="glyphicon glyphicon-log-out"></span> Creation de groupe</a>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fa fa-bell">
+                                <span class="badge badge-info">7</span>
+                            </i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('friends') }}">
+                            <i class="fa fa-envelope-o">
+                                <span class="badge badge-danger">1</span>
+                            </i>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" id="navtitle">{{ app.user.username }}<span class="sr-only">(current)</span></a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{  path('fos_user_security_logout') }}">
+                            <i class="fa fa-sign-out">
+                            </i>
+                        </a>
+                    </li>
+                    </li>
+                </ul>
+
+            {% else %}
+                <a href="{{ path('fos_user_security_login') }}" class="btn btn-primary btn-primary ml-2"><span class="glyphicon glyphicon-log-in"></span> Connexion</a>
+                <a href="{{ path('fos_user_registration_register') }}" class="btn btn-primary btn-primary ml-2"><span class="glyphicon glyphicon-log-in"></span> Inscription</a>
+            {% endif %}
+        </div>
+    </nav>
+    <br><br><br>
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>
+<style>
+    body{
+        background-color : #f8f9fa !important;
+    }
+    #navtitle{
+        color: #fff;
+    }
+
+</style>
+</html>

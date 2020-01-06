@@ -1,0 +1,184 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <section class="banner-section">
+    </section>
+    <section class="post-content-section">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 post-title-block">
+
+                    <h1 class="text-center">{{ article.title }}</h1>
+                    <ul class="list-inline text-center">
+                        <li>Auteur : {{ article.createdBy }} </li>
+                    </ul>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-12">
+                    {#<a href="{{ path('groups_view', {id : id}) }}" class="goBack">Retour</a>#}
+                    <p class="lead">Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.</p>
+                    <p>{{ article.description }}</p>
+                    {% if article.imagelink != null %}
+                        <img src="{{ article.imagelink }}" style="width: 40%; height: 40%">
+                    {% endif %}
+                    {% if article.videolink != null %}
+                        <iframe width="560" height="315" src="{{ article.videolink }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    {% endif %}
+                    <blockquote>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante. nascetur ridiculus mus. Donec ullamcorper nulla non metus auctor fringilla. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec ullamcorper nulla non metus auctor fringilla.</p>
+
+                    </blockquote>
+
+                    <p>Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi porta gravida at eget metus. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+
+                </div>
+            </div>
+
+
+
+        </div> <!-- /container -->
+    </section>
+
+    <div class="container center_div" id="form-container">
+        <div class="col">
+            <div class="form-group">
+                {{ form_start(commentForm) }}
+                {{ form_row(commentForm.title, {'attr' : {'class' : 'foo'}, 'label' : 'Titre'} ) }}
+                {{ form_row(commentForm.body, {'attr' : {'class' : 'md-textarea form-control center'}, 'label' : 'Commentaire'} ) }}
+                {{ form_widget(commentForm) }}
+                {{ form_end(commentForm) }}
+            </div>
+        </div>
+    </div>
+    {% for comment in  comments %}
+        <div class='container'>
+            <div class="media comment-box">
+                <div class="media-left">
+                    <a href="#">
+                        <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">@{{ comment.createdBy }}</h4>
+                    <blockquote class="blockquote text-center">
+                        <p id="commentTitle" class="mb-0">{{ comment.title }}</p>
+                    </blockquote>
+                    <p>{{ comment.body }}</p>
+
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    <style>
+        #commentTitle{
+            font-size: 70%;
+        }
+        .media-body h4{
+            font-size: 86%;
+        }
+        /* CSS Test begin */
+        .comment-box {
+            margin-top: 30px !important;
+        }
+        /* CSS Test end */
+
+        .comment-box img {
+            width: 50px;
+            height: 50px;
+        }
+        .comment-box .media-left {
+            padding-right: 10px;
+            width: 65px;
+        }
+        .comment-box .media-body p {
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+        .comment-box .media-body .media p {
+            margin-bottom: 0;
+        }
+        .comment-box .media-heading {
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            padding: 7px 10px;
+            position: relative;
+            margin-bottom: -1px;
+        }
+        .comment-box .media-heading:before {
+            content: "";
+            width: 12px;
+            height: 12px;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-width: 1px 0 0 1px;
+            -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+            position: absolute;
+            top: 10px;
+            left: -6px;
+        }
+        #form-container{
+            width: 30%;
+        }
+        .navbar{
+            margin-bottom:0;
+        }
+        section{
+            width:100%; float:left;
+        }
+            .banner-section{
+                background-image:url("https://static.pexels.com/photos/373912/pexels-photo-373912.jpeg");
+                background-size:cover;
+                height: 380px;
+                left: 0;
+                position: absolute; top: 0; background-position:0;}
+        .post-title-block{padding:100px 0;}
+        .post-title-block h1 {color: #fff; font-size: 85px; font-weight: bold; text-transform: capitalize;}
+        .post-title-block li{font-size:20px; color: #fff;}
+        .image-block{float:left; width:100%; margin-bottom:10px;}
+        .footer-link{float:left; width:100%; background:#222222; text-align:center; padding:30px;}
+        .footer-link a{color:#A9FD00; font-size:18px; text-transform:uppercase;}
+
+        .goBack {
+            -moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+            -webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+            box-shadow:inset 0px 1px 0px 0px #ffffff;
+            background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffffff), color-stop(1, #f6f6f6));
+            background:-moz-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+            background:-webkit-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+            background:-o-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+            background:-ms-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+            background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+            filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0);
+            background-color:#ffffff;
+            -moz-border-radius:6px;
+            -webkit-border-radius:6px;
+            border-radius:6px;
+            border:1px solid #dcdcdc;
+            display:inline-block;
+            cursor:pointer;
+            color:#666666;
+            font-family:Arial;
+            font-size:15px;
+            font-weight:bold;
+            padding:6px 24px;
+            text-decoration:none;
+            text-shadow:0px 1px 0px #ffffff;
+        }
+        .goBack:hover {
+            background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f6f6f6), color-stop(1, #ffffff));
+            background:-moz-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
+            background:-webkit-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
+            background:-o-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
+            background:-ms-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
+            background:linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+            filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff',GradientType=0);
+            background-color:#f6f6f6;
+        }
+        .goBack:active {
+            position:relative;
+            top:1px;
+        }
+    </style>
+{% endblock %}

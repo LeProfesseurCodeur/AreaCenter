@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+        <div id="headerwrap">
+            <div class="container">
+                <h1 id="primary-title">Area Center</h1>
+                <div class="row">
+                    <div class="container">
+                        <br/>
+                        <div class="row justify-content-center">
+                            <div class="col-12 col-md-10 col-lg-8">
+                                <form method="post" action= "{{ path('search_groups') }}" class="card card-sm">
+                                    <div class="card-body row no-gutters align-items-center">
+                                        <div class="col-auto">
+                                            <i class="fas fa-search h4 text-body"></i>
+                                        </div>
+                                        <div class="col">
+                                            <input name="_search" class="form-control form-control-lg form-control-borderless" type="search" placeholder="Search topics or keywords">
+                                        </div>
+                                        <div class="col-auto">
+                                            <button class="btn btn-lg btn-primary" type="submit">Search</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /row -->
+            </div>
+            <!-- /container -->
+        </div>
+    <style>
+        #primary-title {
+            color: #ffffff;
+            font-family: 'Raleway',sans-serif;
+            font-size: 62px; font-weight: 800;
+            line-height: 72px; margin: 0 0 24px;
+            text-align: center;
+            text-transform: uppercase;
+            text-shadow: 1px 1px 1px black;
+        }
+        .form-control-borderless {
+            border: none;
+        }
+
+        .form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus {
+            border: none;
+            outline: none;
+            box-shadow: none;
+        }
+        #headerwrap {
+            /* background: url(../img/bg01.jpg) no-repeat center top; */
+            background-color: #3498db;
+            margin-top: -20px;
+            padding-top: 100px;
+            background-attachment: relative;
+            background-position: center center;
+            min-height: 500px;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            #headerwrap {
+                padding-top: 100px;
+            }
+        }
+    </style>
+
+{% endblock %}

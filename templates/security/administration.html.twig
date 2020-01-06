@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <form action="{{ path("administration_users") }}">
+        <button type="submit" class="btn btn-primary">
+            Nouveaux utilisateurs derniers 24h : <span class="badge badge-light">{{ lastUsersSignup }}</span>
+        </button>
+        <button type="submit" class="btn btn-primary">
+            Nombres total d'utilisateurs : <span class="badge badge-light">{{ totalUsers }}</span>
+        </button>
+    </form>
+
+{% endblock %}

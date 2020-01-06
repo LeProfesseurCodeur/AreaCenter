@@ -1,0 +1,47 @@
+{% trans_default_domain 'FOSUserBundle' %}
+{% extends 'base.html.twig' %}
+{% block body %}
+<div class="login-popup-heading text-center">
+    <h4><i class="fa fa-lock" aria-hidden="true"></i> Register </h4>
+</div>
+{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'form-group','id':'login-popup-btn'}}) }}
+    {{ form_widget(form,{'attr': {'class': 'form-control' }}) }}
+    <div class="form-group">
+        <input id="_submit" type="submit" class="btn btn-default login-popup-btn" value="S'enregistrer" />
+    </div>
+{{ form_end(form) }}
+
+<style>
+    .login-popup-heading>h4 {
+        color: #258b47;
+        font-size: 18px;
+        line-height: 30px;
+    }
+    .new_reg_popup, .new_login_popup {
+        border-radius: 2px;
+        min-height: 332px;
+        width: 500px;
+        margin: 0px auto;
+    }
+    #login-popup-btn {
+        background: #258b47;
+        border: none;
+        border-radius: 25px;
+        color: #fff;
+        display: block;
+        font-size: 18px;
+        height: 38px;
+        line-height: 28px;
+        margin: 20px auto 5px;
+        width: 20%;
+        -webkit-transition: all 700ms ease;
+        -moz-transition: all 700ms ease;
+        -ms-transition: all 700ms ease;
+        -o-transition: all 700ms ease;
+    }
+    a{
+        color: #258b47;
+        font-size: 18px;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container center_div" id="form-container">
+        <div class="col">
+            <div class="form-group">
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+    <style>
+        #form-container{
+            width: 40%;
+        }
+    </style>
+
+{% endblock %}
